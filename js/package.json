@@ -1,0 +1,19 @@
+{
+  "name": "XXX",
+  "version": "1.0.0",
+  "description": "",
+  "main": "XXX.js",
+  "private": true,
+  "scripts": {
+    "test": "NODE_ENV=test mocha test.js",
+    "test/watch": "npm run test -- --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "lodash": "^4.17.15",
+    "mocha": "^6.2.0"
+  }
+}
