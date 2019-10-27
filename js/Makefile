@@ -12,6 +12,7 @@ endif
 ifndef dir
 	$(error 'dir' is required)
 endif
+	mkdir -p $(dir)
 	cp ./Makefile $(dir)
 	cp ./Dockerfile $(dir)
 	cp ./package.json $(dir)
