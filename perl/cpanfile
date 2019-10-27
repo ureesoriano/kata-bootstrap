@@ -1,0 +1,10 @@
+requires 'App::Prove::Watch';
+requires 'Data::Compare';
+requires 'Data::Dumper';
+requires 'DateTime';
+requires 'DateTime::Duration';
+requires 'Moose';
+requires 'UUID';
+requires 'Test::Exception';
+requires 'Test::Spec::Acceptance';
+requires 'Test::Spec::Mocks';
