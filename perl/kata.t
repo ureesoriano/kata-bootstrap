@@ -1,13 +1,13 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-use feature 'say';
+use feature qw(say signatures);
 
 use Test::Spec::Acceptance;
 use Data::Compare;
 use Data::Dumper;
 
-sub XXX {
+sub XXX($x) {
    # ...
 }
 
