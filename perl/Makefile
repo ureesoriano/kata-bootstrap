@@ -1,7 +1,7 @@
 .PHONY: init build shell test test-watch install-dependencies
 
 docker-run := docker run \
-	--rm -ti \
+	--rm -ti --init \
 	-v $(shell pwd):/code \
 	kata-perl:latest
 
