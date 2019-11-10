@@ -1,4 +1,5 @@
 const should = require('chai').should();
+const sinon = require('sinon');
 const _ = require('lodash');
 
 const XXX = require('./XXX');
@@ -11,7 +12,10 @@ describe.only('Setup', () => {
 
 describe.skip(`XXX function`, () => {
   beforeEach(() => {
-    // ...
+    let sinonFake = { process: () => 1};
+    let sinonMock = sinon.mock(sinonFake);
+    let SUT = () => 1;
+    SUT(sinonFake);
   });
 
   it(`it should ..`, () => {
