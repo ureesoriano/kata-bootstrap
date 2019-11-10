@@ -1,11 +1,4 @@
-.PHONY: init build shell test test-watch install-dependencies
-
-docker-run := docker run \
-	--rm -ti --init \
-	-v $(shell pwd):/code \
-	kata-perl:latest
-
-prove := carton exec -- provewatcher -v --watch .
+.PHONY: init build
 
 init: build ## <name> <dir>
 ifndef name
@@ -15,7 +8,7 @@ ifndef dir
 	$(error 'dir' is required)
 endif
 	mkdir -p $(dir)
-	cp ./Makefile $(dir)
+	cp ./Makefile.kata $(dir)/Makefile
 	cp ./Dockerfile $(dir)
 	cp ./cpanfile $(dir)
 	cp ./cpanfile.snapshot $(dir)
@@ -27,15 +20,3 @@ build:
 	docker build \
 		-t kata-perl:latest \
 		.
-
-shell: install-dependencies
-	$(docker-run) bash
-
-test: install-dependencies
-	$(docker-run) carton exec -- prove -v kata.t
-
-test-watch: install-dependencies
-	$(docker-run) $(prove) kata.t
-
-install-dependencies: build
-	$(docker-run) carton install

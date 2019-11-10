@@ -1,4 +1,9 @@
-.PHONY: init build
+.PHONY: build shell test test-watch
+
+docker-run := docker run \
+	--rm -ti \
+	-v $(shell pwd):/code \
+	kata-js:latest
 
 init: build ## <name> <dir>
 ifndef name
@@ -8,7 +13,7 @@ ifndef dir
 	$(error 'dir' is required)
 endif
 	mkdir -p $(dir)
-	cp ./Makefile.kata $(dir)/Makefile
+	cp ./Makefile $(dir)
 	cp ./Dockerfile $(dir)
 	cp ./package.json $(dir)
 	cp ./test.js $(dir)
@@ -20,3 +25,12 @@ build:
 	docker build \
 		-t kata-js:latest \
 		.
+
+shell: build
+	$(docker-run) sh
+
+test: build
+	$(docker-run) npm run test
+
+test-watch: build
+	$(docker-run) npm run test -- --watch

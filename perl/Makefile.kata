@@ -1,0 +1,25 @@
+.PHONY: build shell test test-watch install-dependencies
+
+docker-run := docker run \
+	--rm -ti --init \
+	-v $(shell pwd):/code \
+	kata-perl:latest
+
+prove := carton exec -- provewatcher -v --watch .
+
+build:
+	docker build \
+		-t kata-perl:latest \
+		.
+
+shell: install-dependencies
+	$(docker-run) bash
+
+test: install-dependencies
+	$(docker-run) carton exec -- prove -v kata.t
+
+test-watch: install-dependencies
+	$(docker-run) $(prove) kata.t
+
+install-dependencies: build
+	$(docker-run) carton install
