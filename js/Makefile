@@ -10,6 +10,7 @@ endif
 	mkdir -p $(dir)
 	cp ./Makefile.kata $(dir)/Makefile
 	cp ./Dockerfile $(dir)
+	cp ./.gitignore $(dir)
 	cp ./package.json $(dir)
 	cp ./test.js $(dir)
 	cp ./index.js $(dir)/$(name).js
